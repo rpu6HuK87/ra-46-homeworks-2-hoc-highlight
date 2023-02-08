@@ -5,7 +5,7 @@ function Article(props) {
   return (
     <div className="item item-article">
       <h3>
-        <a href="#">{props.title}</a>
+        <a href={props.url}>{props.title}</a>
       </h3>
       <p className="views">Прочтений: {props.views}</p>
     </div>
@@ -16,6 +16,7 @@ function Video(props) {
   return (
     <div className="item item-video">
       <iframe
+        title={props.url}
         src={props.url}
         allow="autoplay; encrypted-media"
         allowFullScreen
@@ -29,7 +30,9 @@ const NewOrPopularVideo = withNewOrPopular(Video)
 const NewOrPopularArticle = withNewOrPopular(Article)
 
 function List(props) {
+  // eslint-disable-next-line
   return props.list.map((item, ind) => {
+    // eslint-disable-next-line
     switch (item.type) {
       case 'video':
         return <NewOrPopularVideo {...item} key={ind} />
